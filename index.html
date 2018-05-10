@@ -18,9 +18,10 @@
 </head>
 
 <body>
-  <div class="fa-4x">
+  <!-- <div class="fa-4x">
     <i class="far fa-folder-open fa-spin"></i>
-    <i class="fab fa-firefox fa-spin"></i>
+    <i class="fab fa-firefox fa-spin"></i> -->
+  <!-- </div> -->
     <h1>File Foxy</h1>
     <h2>File it right. File it the Foxy way!</h2>
   </div>
@@ -31,10 +32,10 @@
     <h3>Sign Up</h3>
     <form id="sign-up">
       <fieldset>
-        <input type="email" name="credentials[email]" autocomplete="email" placeholder="Email" required>
-        <input type="text" name="credentials[username]" autocomplete="username" placeholder="username" required>
-        <input type="password" name="credentials[password]" autocomplete="password" placeholder="Password" required>
-        <input type="password" name="credentials[password_confirmation]" autocomplete="password" placeholder="Password Confirmation" required>
+        <input type="email" name="user[email]" autocomplete="email" placeholder="Email" required>
+        <input type="email" name="user[username]" autocomplete="email" placeholder="Username" required>
+        <input type="password" name="user[password]" autocomplete="password" placeholder="Password" required>
+        <input type="password" name="user[password_confirmation]" autocomplete="password" placeholder="Password Confirmation" required>
         <input class="button" type="submit" value="Sign up!">
       </fieldset>
     </form>
@@ -44,20 +45,23 @@
     <h3>Sign In</h3>
     <form id="sign-in">
       <fieldset>
-        <input type="email" name="credentials[email]" autocomplete="email" placeholder="Email" required>
-        <input type="password" name="credentials[password]" autocomplete="password" placeholder="Password" required>
+        <input type="email" name="user[email]" autocomplete="email" placeholder="Email" required>
+        <input type="password" name="user[password]" autocomplete="password" placeholder="Password" required>
         <input class="button" type="submit" value="Sign in!">
       </fieldset>
     </form>
   </div>
 
-  <div class="add-file">
+  <div class="create-file">
     <h3>Add File</h3>
-    <form id="add-file" enctype='multipart/form-data'>
-        <input type="text" name="fileupload[title]" autocomplete="title" placeholder="Project title" >
-        <input type="text" name="fileupload[tags]" autocomplete="title" placeholder="Tags" >
-        <input type="file" name="fileupload[file]">
-        <input class="button" type="submit" value="Add File">
+    <form id="create-file">
+      <fieldset>
+        <input type="text" name="fileupload[fileupload.title]" autocomplete="title" placeholder="File name" required>
+
+        <input type="text" name="fileupload[project_title]" autocomplete="tags" placeholder="Tags (ex. cat, dog)">
+
+        <input class="button" type="submit" value="Upload File">
+      </fieldset>
     </form>
   </div>
 
@@ -75,8 +79,8 @@
     <form id="update-files">
       <fieldset>
         <input type="number" name="id" autocomplete="none" placeholder="File ID#" required>
-        <input type="text" name="project[project_title]" autocomplete="title" placeholder="New file name" required>
-        <input type="text" name="project[difficulty_id]" autocomplete="difficulty" placeholder="Tags" required>
+        <input type="text" name="fileupload[project_title]" autocomplete="title" placeholder="New file name" required>
+        <input type="text" name="fileupload[difficulty_id]" autocomplete="difficulty" placeholder="Tags" required>
         <input class="button" type="submit" value="Update Project">
       </fieldset>
     </form>
