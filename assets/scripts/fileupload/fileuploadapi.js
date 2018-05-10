@@ -7,6 +7,9 @@ const createFileUpload = function (formData) {
   return $.ajax({
     method: 'POST',
     url: config.apiUrl + `/fileuploads`,
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
     data: formData,
     contentType: false,
     processData: false
