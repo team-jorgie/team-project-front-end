@@ -2,15 +2,17 @@
 const config = require('../config')
 const store = require('../store')
 
-const createFileUpload = function (data) {
+const createFileUpload = function (formData) {
+  console.log(formData)
   return $.ajax({
-    url: config.apiUrl + `/fileupload`,
     method: 'POST',
+    url: config.apiUrl + `/fileuploads`,
     headers: {
-      contentType: 'application/json',
       Authorization: 'Token token=' + store.user.token
     },
-    data
+    data: formData,
+    contentType: false,
+    processData: false
   })
 }
 

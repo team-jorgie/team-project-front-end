@@ -30,6 +30,7 @@ const signInSuccess = function (data) {
   }, 3000
   )
   store.user = data.user
+  console.log(store.user)
 }
 
 const signInFailure = function () {

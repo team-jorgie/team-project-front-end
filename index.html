@@ -53,12 +53,11 @@
 
   <div class="add-file">
     <h3>Add File</h3>
-    <form id="add-file">
-      <fieldset>
-        <input type="text" name="project[project_title]" autocomplete="title" placeholder="Project title" required>
-        <input type="text" name="project[project_title]" autocomplete="title" placeholder="Tags" required>
+    <form id="add-file" enctype='multipart/form-data'>
+        <input type="text" name="fileupload[title]" autocomplete="title" placeholder="Project title" >
+        <input type="text" name="fileupload[tags]" autocomplete="title" placeholder="Tags" >
+        <input type="file" name="fileupload[file]">
         <input class="button" type="submit" value="Add File">
-      </fieldset>
     </form>
   </div>
 
