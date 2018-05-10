@@ -1,17 +1,106 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>Filefox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
-      <h1>Browser Template</h1>
-    </body>
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
+
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<body>
+  <div class="fa-4x">
+    <i class="far fa-folder-open fa-spin"></i>
+    <i class="fab fa-firefox fa-spin"></i>
+    <h1>File Foxy</h1>
+    <h2>File it right. File it the Foxy way!</h2>
+  </div>
+
+  <hr>
+
+  <div class="sign-up">
+    <h3>Sign Up</h3>
+    <form id="sign-up">
+      <fieldset>
+        <input type="email" name="credentials[email]" autocomplete="email" placeholder="Email" required>
+        <input type="password" name="credentials[password]" autocomplete="password" placeholder="Password" required>
+        <input type="password" name="credentials[password_confirmation]" autocomplete="password" placeholder="Password Confirmation" required>
+        <input class="button" type="submit" value="Sign up!">
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="sign-in">
+    <h3>Sign In</h3>
+    <form id="sign-in">
+      <fieldset>
+        <input type="email" name="credentials[email]" autocomplete="email" placeholder="Email" required>
+        <input type="password" name="credentials[password]" autocomplete="password" placeholder="Password" required>
+        <input class="button" type="submit" value="Sign in!">
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="add-file">
+    <h3>Add File</h3>
+    <form id="add-file">
+      <fieldset>
+        <input type="text" name="project[project_title]" autocomplete="title" placeholder="Project title" required>
+        <input type="text" name="project[project_title]" autocomplete="title" placeholder="Tags" required>
+        <input class="button" type="submit" value="Add File">
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="view-files">
+    <h3>View Files</h3>
+    <form id="view-file">
+      <fieldset>
+        <input class="button" type="submit" value="View Projects">
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="update-files">
+    <h3>Update Project</h3>
+    <form id="update-files">
+      <fieldset>
+        <input type="number" name="id" autocomplete="none" placeholder="File ID#" required>
+        <input type="text" name="project[project_title]" autocomplete="title" placeholder="New file name" required>
+        <input type="text" name="project[difficulty_id]" autocomplete="difficulty" placeholder="Tags" required>
+        <input class="button" type="submit" value="Update Project">
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="change-password">
+    <h3>Change Password</h3>
+    <form id="change-password">
+      <fieldset>
+        <input type="password" name="passwords[old]" autocomplete="password" placeholder="Old password" required>
+        <input type="password" name="passwords[new]" autocomplete="password" placeholder="New password" required>
+        <input class="button" type="submit" value="Change Password">
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="sign-out">
+    <h3>Sign Out</h3>
+    <form id="sign-out">
+      <fieldset>
+        <input class="button" type="submit" value="Exit">
+      </fieldset>
+    </form>
+  </div>
+</body>
+
 </html>
