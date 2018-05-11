@@ -44,11 +44,16 @@ const deleteFileUploadFailure = function () {
 }
 
 const getFileUploadSuccess = function (data) {
-    setTimeout(() => {
-      $('#message').html('')
-    }, 3000
-    )
-
+  console.log(data)
+  let resultsHtml = ''
+  data.uploads.forEach((result) => {
+    resultsHtml = resultsHtml + `<p><a href="${result.url}" download="${result.title}">Name: ${result.title}</a></p><p>Owner: ${result.owner}</p><p>Created: ${result.createdAt}</p><p>Updated: ${result.updatedAt}</p>`
+  })
+  $('form.view-file').append(resultsHtml)
+  setTimeout(() => {
+    $('#message').html('')
+  }, 3000
+  )
 }
 const getFileUploadFailure = function () {
   setTimeout(() => {

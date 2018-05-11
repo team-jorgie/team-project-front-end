@@ -30,6 +30,32 @@ const signInSuccess = function (data) {
   }, 3000
   )
   store.user = data.user
+  const createFileUploadHandlebars = require('../templates/file-upload/create-file.handlebars')
+  const createFileUploadHTML = createFileUploadHandlebars()
+
+  const updateFileUploadHandlebars = require('../templates/file-upload/update-file.handlebars')
+  const updateFileUploadHTML = updateFileUploadHandlebars()
+
+  const viewFileUploadHandlebars = require('../templates/file-upload/view-file.handlebars')
+  const viewFileUploadHTML = viewFileUploadHandlebars()
+
+  const deleteFileUploadHandlebars = require('../templates/file-upload/delete-file.handlebars')
+  const deleteFileUploadHTML = deleteFileUploadHandlebars()
+
+  $('body').append(createFileUploadHTML)
+  $('body').append(updateFileUploadHTML)
+  $('body').append(viewFileUploadHTML)
+  $('body').append(deleteFileUploadHTML)
+
+  const changePasswordUserHandlebars = require('../templates/change-password.handlebars')
+  const changePasswordUserHTML = changePasswordUserHandlebars()
+
+  const signOutUserHandlebars = require('../templates/sign-out.handlebars')
+  const signOutUserHTML = signOutUserHandlebars()
+  $('body').append(changePasswordUserHTML)
+  $('body').append(signOutUserHTML)
+  $('.sign-up').remove()
+  $('.sign-in').remove()
   console.log(store.user)
 }
 
@@ -71,6 +97,21 @@ const signOutSuccess = function () {
   }, 3000
   )
   store.user = null
+  $('.create-file').remove()
+  $('.update-file').remove()
+  $('.view-file').remove()
+  $('.delete-file').remove()
+  $('.change-password').remove()
+  $('.sign-out').remove()
+
+  const signUpUserHandlebars = require('../templates/sign-up.handlebars')
+  const signUpUserHTML = signUpUserHandlebars()
+
+  const signInUserHandlebars = require('../templates/sign-in.handlebars')
+  const signInUserHTML = signInUserHandlebars()
+
+  $('body').append(signUpUserHTML)
+  $('body').append(signInUserHTML)
   console.log('u signed out')
 }
 const signOutFailure = function () {

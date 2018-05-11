@@ -42,13 +42,11 @@ const deleteFileUpload = function (data) {
 
 const getFileUpload = function (data) {
   return $.ajax({
-    url: config.apiUrl + '/fileupload',
     method: 'GET',
+    url: config.apiUrl + `/fileuploads`,
     headers: {
-      contentType: 'application/json',
       Authorization: 'Token token=' + store.user.token
-    },
-    data: data
+    }
   })
 }
 

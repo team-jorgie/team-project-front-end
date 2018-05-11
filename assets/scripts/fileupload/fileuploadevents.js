@@ -31,14 +31,15 @@ const onDeleteFileUpload = (event) => {
 
 const onGetFileUpload = (event) => {
   event.preventDefault()
-  const data = getFormFields(event.target)
-  api.getFileUpload(data)
-    // .then(ui.)
+  // const data = getFormFields(event.target)
+  api.getFileUpload()
+    .then(ui.getFileUploadSuccess)
     // .catch(ui.)
 }
 
 const addHandlers = () => {
-  $('#add-file').on('submit', onCreateFileUpload)
+  $('body').on('submit', '.create-file', onCreateFileUpload)
+  $('body').on('submit', '.view-file', onGetFileUpload)
 }
 
 module.exports = {
