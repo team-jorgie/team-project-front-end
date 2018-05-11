@@ -1,0 +1,23 @@
+
+<div class="jumbotron">
+  <div class="jumbotron-content">
+    <i class="far fa-folder-open fa-spin"></i>
+    <i class="fab fa-firefox fa-spin"></i>
+    <h1>Welcome to Foxy File!</h1>
+    <p>Sign up or sign in to get started!</p>
+  <div class="jumbotron-button">
+    <!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-modal">Sign Up or Sign In</button>
+
+</div>
+    <p>File the Foxy Way!</p>
+</div>
+</div>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="sign-in-modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      {{> sign-up}}
+      {{> sign-in}}
+    </div>
+  </div>
+</div>

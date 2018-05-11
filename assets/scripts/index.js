@@ -9,16 +9,16 @@
 const authEvents = require('./auth/events')
 const fileUploadEvents = require('./fileupload/fileuploadevents')
 
-const signUpUserHandlebars = require('./templates/sign-up.handlebars')
-const signUpUserHTML = signUpUserHandlebars()
+const navHandlebars = require('./templates/nav.handlebars')
+const navHTML = navHandlebars()
 
-const signInUserHandlebars = require('./templates/sign-in.handlebars')
-const signInUserHTML = signInUserHandlebars()
+const homePageHandlebars = require('./templates/homepage.handlebars')
+const homePageHTML = homePageHandlebars()
 
 $(() => {
   // your JS code goes here
   authEvents.addHandlers()
   fileUploadEvents.addHandlers()
-  $('body').append(signUpUserHTML)
-  $('body').append(signInUserHTML)
+  $('body').prepend(navHTML)
+  $('body').append(homePageHTML)
 })
