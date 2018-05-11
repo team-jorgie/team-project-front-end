@@ -1,8 +1,6 @@
 
 <div class="jumbotron">
   <div class="jumbotron-content">
-    <i class="far fa-folder-open fa-spin"></i>
-    <i class="fab fa-firefox fa-spin"></i>
     <h1>Welcome to Foxy File!</h1>
     <p>Sign up or sign in to get started!</p>
   <div class="jumbotron-button">
@@ -16,8 +14,16 @@
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="sign-in-modal">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      {{> sign-up}}
-      {{> sign-in}}
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#signup">Sign Up</a></li>
+        <li role="presentation"><a href="#signin">Sign In</a></li>
+      </ul>
+      <div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="signup">{{> sign-up}}</div>
+  <div role="tabpanel" class="tab-pane" id="signin">{{> sign-in}}</div>
+</div>
+
+      </ul>
     </div>
   </div>
 </div>
