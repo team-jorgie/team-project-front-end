@@ -54,8 +54,7 @@ const signInSuccess = function (data) {
   const signOutUserHTML = signOutUserHandlebars()
   $('body').append(changePasswordUserHTML)
   $('body').append(signOutUserHTML)
-  $('.sign-up').remove()
-  $('.sign-in').remove()
+  $('.jumbotron').remove()
   console.log(store.user)
 }
 
@@ -104,14 +103,10 @@ const signOutSuccess = function () {
   $('.change-password').remove()
   $('.sign-out').remove()
 
-  const signUpUserHandlebars = require('../templates/sign-up.handlebars')
-  const signUpUserHTML = signUpUserHandlebars()
+  const homePageHandlebars = require('../templates/homepage.handlebars')
+  const homePageHTML = homePageHandlebars()
 
-  const signInUserHandlebars = require('../templates/sign-in.handlebars')
-  const signInUserHTML = signInUserHandlebars()
-
-  $('body').append(signUpUserHTML)
-  $('body').append(signInUserHTML)
+  $('body').append(homePageHTML)
   console.log('u signed out')
 }
 const signOutFailure = function () {
