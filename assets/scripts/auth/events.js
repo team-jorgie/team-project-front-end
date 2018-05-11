@@ -36,10 +36,10 @@ const onSignOut = function (event) {
 }
 
 const addHandlers = () => {
-  $('#sign-up').on('submit', onSignUp)
-  $('#sign-in').on('submit', onSignIn)
-  $('#change-password').on('submit', onChangePassword)
-  $('#sign-out').on('submit', onSignOut)
+  $('body').on('submit', '.sign-up', onSignUp)
+  $('body').on('submit', '.sign-in', onSignIn)
+  $('body').on('submit', '.change-password', onChangePassword)
+  $('body').on('submit', '.sign-out', onSignOut)
 }
 
 module.exports = {

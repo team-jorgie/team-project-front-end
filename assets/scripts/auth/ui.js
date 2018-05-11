@@ -70,6 +70,8 @@ const signOutSuccess = function () {
     $('#message').html('')
   }, 3000
   )
+  store.user = null
+  console.log('u signed out')
 }
 const signOutFailure = function () {
   $('#message').html(`<div class="alert alert-danger" role="alert">Failed to sign out!</div>`)

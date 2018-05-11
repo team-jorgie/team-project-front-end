@@ -45,5 +45,4 @@ $(() => {
   $('body').append(updateFileUploadHTML)
   $('body').append(viewFileUploadHTML)
   $('body').append(deleteFileUploadHTML)
-
 })
