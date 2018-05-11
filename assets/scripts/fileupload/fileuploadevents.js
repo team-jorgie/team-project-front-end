@@ -8,15 +8,18 @@ const onCreateFileUpload = function (event) {
   const formData = new FormData(event.target)
   console.log('form data in submit is: ', formData)
   api.createFileUpload(formData)
-    // .then(ui.)
+    .then(ui.createFileUploadSuccess)
     // .catch(ui.)
 }
 
 const onUpdateFileUpload = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  data.fileupload.tag = data.fileupload.tag.split(', ')
+  console.log(data)
   api.updateFileUpload(data)
-    // .then(ui.)
+    .then((data) => { console.log(data) })
+    .then(onGetFileUploadNoEvent)
     // .catch(ui.)
 }
 
@@ -37,11 +40,21 @@ const onGetFileUpload = (event) => {
     // .catch(ui.)
 }
 
+
+const onGetFileUploadNoEvent = () => {
+  // const data = getFormFields(event.target)
+  api.getFileUpload()
+    .then(ui.getFileUploadSuccess)
+    // .catch(ui.)
+}
+
 const addHandlers = () => {
   $('body').on('submit', '.create-file', onCreateFileUpload)
   $('body').on('submit', '.view-file', onGetFileUpload)
+  $('body').on('submit', '.update-file', onUpdateFileUpload)
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onGetFileUploadNoEvent
 }

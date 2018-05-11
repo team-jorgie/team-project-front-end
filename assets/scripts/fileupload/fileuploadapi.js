@@ -18,10 +18,9 @@ const createFileUpload = function (formData) {
 
 const updateFileUpload = (data) => {
   return $.ajax({
-    url: config.apiUrl + `/fileupload/` + data.id,
+    url: config.apiUrl + `/fileuploads/` + data.fileupload.id,
     method: 'PATCH',
     headers: {
-      contentType: 'application/json',
       Authorization: 'Token token=' + store.user.token
     },
     data: data
