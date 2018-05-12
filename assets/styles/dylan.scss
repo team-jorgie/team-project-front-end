@@ -38,3 +38,37 @@ body {
 .sign-out-dropdown {
   margin-top: 8px;
 }
+
+.scrollable {
+  margin-top: 40px;
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.scrollable-tab-content {
+  overflow-y: scroll;
+  border-style: double;
+  background-color: grey;
+  max-height: 500px;
+  -webkit-box-shadow: -4px 3px 100px 25px rgba(0, 0, 0, 0.65);
+  -moz-box-shadow: -4px 3px 100px 25px rgba(0, 0, 0, 0.65);
+  box-shadow: -4px 3px 100px 25px rgba(0, 0, 0, 0.65);
+  height: 700px;
+  width: 700px;
+  background-image: url(https://i.imgur.com/zRHcFPL.jpg);
+  color: white;
+}
+
+.file-tabs > li {
+  float: none;
+  display: inline-block;
+  zoom: 1;
+  background-color: #020598;
+}
+
+.file-tabs {
+  text-align: center;
+}
