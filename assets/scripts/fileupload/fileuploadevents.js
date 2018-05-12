@@ -41,6 +41,13 @@ const onGetFileUpload = (event) => {
     // .catch(ui.)
 }
 
+const deleter = (e) => {
+  e.preventDefault()
+  console.log('delete ')
+  const data = {fileupload: { id: $(e.target).children().attr('data-id') }}
+  console.log('item to delete has id of', data)
+  api.deleteFileUpload(data)
+}
 
 const onGetFileUploadNoEvent = () => {
   // const data = getFormFields(event.target)
@@ -54,6 +61,7 @@ const addHandlers = () => {
   $('body').on('submit', '.view-file', onGetFileUpload)
   $('body').on('submit', '.update-file', onUpdateFileUpload)
   $('body').on('submit', '.delete-file', onDeleteFileUpload)
+  $('body').on('submit', '.form-results .delete-single-file', deleter)
 }
 
 module.exports = {
