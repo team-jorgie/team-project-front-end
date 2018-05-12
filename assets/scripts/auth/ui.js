@@ -25,6 +25,7 @@ const signInSuccess = function (data) {
   $('#message').html(`<div class="alert alert-success" role="alert">You have succesfully signed in!</div>`)
   $('#message').css('text-align', 'center')
   $('form').trigger('reset')
+  $('.modal').modal('hide')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
@@ -42,10 +43,14 @@ const signInSuccess = function (data) {
   const deleteFileUploadHandlebars = require('../templates/file-upload/delete-file.handlebars')
   const deleteFileUploadHTML = deleteFileUploadHandlebars()
 
+  const navHandlebars = require('../templates/nav.handlebars')
+  const navHTML = navHandlebars()
+
   $('body').append(createFileUploadHTML)
   $('body').append(updateFileUploadHTML)
   $('body').append(viewFileUploadHTML)
   $('body').append(deleteFileUploadHTML)
+  $('body').prepend(navHTML)
 
   const changePasswordUserHandlebars = require('../templates/change-password.handlebars')
   const changePasswordUserHTML = changePasswordUserHandlebars()
@@ -101,7 +106,7 @@ const signOutSuccess = function () {
   $('.view-file').remove()
   $('.delete-file').remove()
   $('.change-password').remove()
-  $('.sign-out').remove()
+  $('.navbar').remove()
 
   const homePageHandlebars = require('../templates/homepage.handlebars')
   const homePageHTML = homePageHandlebars()
