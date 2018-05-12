@@ -30,6 +30,7 @@ const signInSuccess = function (data) {
     $('#message').html('')
   }, 3000
   )
+
   store.user = data.user
   const createFileUploadHandlebars = require('../templates/file-upload/create-file.handlebars')
   const createFileUploadHTML = createFileUploadHandlebars()
@@ -46,18 +47,24 @@ const signInSuccess = function (data) {
   const navHandlebars = require('../templates/nav.handlebars')
   const navHTML = navHandlebars()
 
+  const scrollFileHandlebars = require('../templates/scrollfile.handlebars')
+  const scrollFileHTML = scrollFileHandlebars()
+
   $('body').append(createFileUploadHTML)
   $('body').append(updateFileUploadHTML)
   $('body').append(viewFileUploadHTML)
   $('body').append(deleteFileUploadHTML)
   $('body').prepend(navHTML)
+  $('body').append(scrollFileHTML)
 
-  const changePasswordUserHandlebars = require('../templates/change-password.handlebars')
-  const changePasswordUserHTML = changePasswordUserHandlebars()
+  $('body').on('click', '.file-tabs a', function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
 
   const signOutUserHandlebars = require('../templates/sign-out.handlebars')
   const signOutUserHTML = signOutUserHandlebars()
-  $('body').append(changePasswordUserHTML)
+
   $('body').append(signOutUserHTML)
   $('.jumbotron').remove()
   console.log(store.user)
@@ -107,6 +114,7 @@ const signOutSuccess = function () {
   $('.delete-file').remove()
   $('.change-password').remove()
   $('.navbar').remove()
+  $('.scrollable').remove()
 
   const homePageHandlebars = require('../templates/homepage.handlebars')
   const homePageHTML = homePageHandlebars()
