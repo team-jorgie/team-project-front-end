@@ -2,9 +2,11 @@
 
   <form class="update-file">
     <fieldset>
+      <input type="text" name="fileupload[id]" autocomplete="id" placeholder="file ID" required>
+
       <input type="text" name="fileupload[title]" autocomplete="title" placeholder="New file name" required>
 
-      <input type="text" name="fileupload[tags]" autocomplete="tags" placeholder="Tags (ex. cat, dog)">
+      <input type="text" name="fileupload[tag]" autocomplete="tags" placeholder="Tags (ex. cat, dog)">
 
       <input class="button" type="submit" value="Update File">
     </fieldset>

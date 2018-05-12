@@ -2,6 +2,7 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const ui = require('./ui')
 const api = require('./api')
+const fileEvents = require('../fileupload/fileUploadEvents')
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -17,6 +18,7 @@ const onSignIn = function (event) {
   const data = getFormFields(event.target)
   api.signIn(data)
     .then(ui.signInSuccess)
+    .then(() => { fileEvents.onGetFileUploadNoEvent() })
     .catch(ui.signInFailure)
 }
 
