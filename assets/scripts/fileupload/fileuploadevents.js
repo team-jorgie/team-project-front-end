@@ -71,7 +71,7 @@ const addHandlers = () => {
   $('body').on('submit', '.view-file', onGetFileUpload)
   $('body').on('submit', '.update-file', onUpdateFileUpload)
   $('body').on('submit', '.delete-file', onDeleteFileUpload)
-  $('body').on('submit', '.form-results .delete-single-file', deleter)
+  $('body').on('submit', '.tab-content .delete-single-file', deleter)
 }
 
 module.exports = {

@@ -50,12 +50,16 @@ const signInSuccess = function (data) {
   const scrollFileHandlebars = require('../templates/scrollfile.handlebars')
   const scrollFileHTML = scrollFileHandlebars()
 
-  $('body').append(createFileUploadHTML)
+  const containerHandlebars = require('../templates/container.handlebars')
+  const containerHTML = containerHandlebars()
+
+  $('body').append(containerHTML)
+  $('.add-files-box').append(createFileUploadHTML)
   $('body').append(updateFileUploadHTML)
-  $('body').append(viewFileUploadHTML)
-  $('body').append(deleteFileUploadHTML)
+  // $('body').append(viewFileUploadHTML)
+  // $('body').append(deleteFileUploadHTML)
   $('body').prepend(navHTML)
-  $('body').append(scrollFileHTML)
+  // $('.container').append(scrollFileHTML)
 
   $('body').on('click', '.file-tabs a', function (e) {
     e.preventDefault()
