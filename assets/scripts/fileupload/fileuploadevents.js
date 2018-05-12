@@ -44,9 +44,19 @@ const onGetFileUpload = (event) => {
 const deleter = (e) => {
   e.preventDefault()
   console.log('delete ')
+  const id = $(e.target).children().attr('data-id')
   const data = {fileupload: { id: $(e.target).children().attr('data-id') }}
   console.log('item to delete has id of', data)
   api.deleteFileUpload(data)
+    .then(ui.deleteFileUploadSuccess)
+    .then(() => {
+      $('#' + id).fadeOut()
+      $('#' + id + '-all').fadeOut()
+    })
+    .then(() => {
+      $('#' + id).remove()
+      $('#' + id + '-all').remove()
+    })
 }
 
 const onGetFileUploadNoEvent = () => {
