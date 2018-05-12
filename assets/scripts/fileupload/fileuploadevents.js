@@ -26,6 +26,7 @@ const onUpdateFileUpload = function (event) {
 const onDeleteFileUpload = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
+  console.log(data)
   api.deleteFileUpload(data)
     // .then(ui.)
     // .then(api.)
@@ -52,6 +53,7 @@ const addHandlers = () => {
   $('body').on('submit', '.create-file', onCreateFileUpload)
   $('body').on('submit', '.view-file', onGetFileUpload)
   $('body').on('submit', '.update-file', onUpdateFileUpload)
+  $('body').on('submit', '.delete-file', onDeleteFileUpload)
 }
 
 module.exports = {
