@@ -15,6 +15,9 @@ const navHTML = navHandlebars()
 const homePageHandlebars = require('./templates/homepage.handlebars')
 const homePageHTML = homePageHandlebars()
 
+const footerHandlebars = require('./templates/footer.handlebars')
+const footerHTML = footerHandlebars()
+
 $(() => {
   // your JS code goes here
   authEvents.addHandlers()
@@ -26,4 +29,5 @@ $(() => {
     $(this).tab('show')
   })
   $('.navbar').remove()
+  $('body').append(footerHTML)
 })
