@@ -51,7 +51,7 @@ const deleteFileUploadSuccess = function (data) {
   console.log(data)
   console.log($('.my-files div').length)
   if ($('.my-files div').length < 2) {
-    $('.my-files').append('<h2 class="no-files">Looks like you don\'t have any files, try uploading some!</h2>')
+    $('.my-files').append('<h2 class="no-files">Looks like you don\'t have any files yet. Add a file to get started!')
   }
   $('#message').html('<div class="alert alert-success" role="alert"><p>You successfully deleted your file!</p></div>')
   setTimeout(() => {
@@ -69,6 +69,7 @@ const deleteFileUploadFailure = function () {
 
 const getFileUploadSuccess = function (data) {
   console.log(data)
+  $('.tab-title').remove()
   $('.my-files').remove()
   $('.all-files').remove()
   console.log(data.uploads.sort(function (a, b) {
@@ -81,12 +82,12 @@ const getFileUploadSuccess = function (data) {
     }
   })
   console.log(myFiles)
-  let myResultsHtml = '<h3>My Files</h3><div class="my-files">'
+  let myResultsHtml = '<h3 class="tab-title">My Files</h3><div class="my-files">'
   myFiles.forEach((result) => {
     const myFileUploadHTML = viewMyFileUploadHandlebars({result: result})
     myResultsHtml = myResultsHtml + myFileUploadHTML
   })
-  let resultsHtml = '<h3>All Files</h3><div class="all-files">'
+  let resultsHtml = '<h3 class="tab-title">All Files</h3><div class="all-files">'
   data.uploads.forEach((result) => {
     const allFileUploadHTML = viewAllFileUploadHandlebars({result: result})
     resultsHtml = resultsHtml + allFileUploadHTML
@@ -94,7 +95,7 @@ const getFileUploadSuccess = function (data) {
   })
   resultsHtml = resultsHtml + '</div>'
   if (myFiles.length < 1) {
-    $('.myfiles-content').append('<div class="my-files"><h3>My Files</h3><h2 class="no-files">Looks like you don\'t have any files, try uploading some!</h2></div>')
+    $('.myfiles-content').append('<div class="my-files"><h3>My Files</h3><h2 class="no-files">Looks like you don\'t have any files yet. Add a file to get started!</h2></div>')
   } else {
     $('.myfiles-content').append(myResultsHtml)
   }

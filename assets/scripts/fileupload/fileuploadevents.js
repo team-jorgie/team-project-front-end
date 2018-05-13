@@ -63,6 +63,7 @@ const onGetFileUploadNoEvent = () => {
   // const data = getFormFields(event.target)
   api.getFileUpload()
     .then(ui.getFileUploadSuccess)
+
     // .catch(ui.)
 }
 

@@ -12,7 +12,7 @@ const signUpSuccess = function () {
 }
 
 const signUpFailure = function () {
-  $('#message').html(`<div class="alert alert-danger" role="alert">You have failed to sign in!</div>`)
+  $('#message').html(`<div class="alert alert-danger" role="alert">You have failed to sign up!<br>Your username or email may be already registered.</div>`)
   $('#message').css('text-align', 'center')
   $('form').trigger('reset')
   setTimeout(() => {

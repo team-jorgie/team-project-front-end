@@ -1,9 +1,10 @@
 <div id="{{result._id}}"  class="display-file">
- <p><a href="{{result.url}}" download="{{result.title}}">Name: {{result.title}}</a></p>
- <p>Owner: {{result.owner}}</p>
- <p>Created: {{result.createdAt}}</p>
- <p>Updated: {{result.updatedAt}}</p>
- <p>Tags: {{result.tag}}</p>
+   <p><a href="{{result.url}}" download="{{result.title}}">Name: {{result.title}}</a></p>
+   <p>Owner: {{result.owner}}</p>
+   <p>Created: {{result.createdAt}}</p>
+   <p>Updated: {{result.updatedAt}}</p>
+   <p>Tags: {{result.tag}}</p>
 
-<form class="delete-single-file"><input  data-id="{{result._id}}" type="submit" value="Delete"></form>
-<button class="show-update" data-id="{{result._id}}">update</button></div>
+  <form class="delete-single-file"><input  data-id="{{result._id}}" type="submit" value="Delete"></form>
+  <button class="show-update" data-id="{{result._id}}">Update</button>
+</div>
