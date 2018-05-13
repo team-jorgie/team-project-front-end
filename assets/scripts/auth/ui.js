@@ -12,7 +12,7 @@ const signUpSuccess = function () {
 }
 
 const signUpFailure = function () {
-  $('#message').html(`<div class="alert alert-danger" role="alert">You have failed to sign in!</div>`)
+  $('#message').html(`<div class="alert alert-danger" role="alert">You have failed to sign up!<br>Your username or email may be already registered.</div>`)
   $('#message').css('text-align', 'center')
   $('form').trigger('reset')
   setTimeout(() => {
@@ -34,28 +34,32 @@ const signInSuccess = function (data) {
   store.user = data.user
   const createFileUploadHandlebars = require('../templates/file-upload/create-file.handlebars')
   const createFileUploadHTML = createFileUploadHandlebars()
+  //
+  // const updateFileUploadHandlebars = require('../templates/file-upload/update-file.handlebars')
+  // const updateFileUploadHTML = updateFileUploadHandlebars()
 
-  const updateFileUploadHandlebars = require('../templates/file-upload/update-file.handlebars')
-  const updateFileUploadHTML = updateFileUploadHandlebars()
-
-  const viewFileUploadHandlebars = require('../templates/file-upload/view-file.handlebars')
-  const viewFileUploadHTML = viewFileUploadHandlebars()
-
-  const deleteFileUploadHandlebars = require('../templates/file-upload/delete-file.handlebars')
-  const deleteFileUploadHTML = deleteFileUploadHandlebars()
+  // const viewFileUploadHandlebars = require('../templates/file-upload/view-file.handlebars')
+  // const viewFileUploadHTML = viewFileUploadHandlebars()
+  //
+  // const deleteFileUploadHandlebars = require('../templates/file-upload/delete-file.handlebars')
+  // const deleteFileUploadHTML = deleteFileUploadHandlebars()
 
   const navHandlebars = require('../templates/nav.handlebars')
   const navHTML = navHandlebars()
 
-  const scrollFileHandlebars = require('../templates/scrollfile.handlebars')
-  const scrollFileHTML = scrollFileHandlebars()
+  // const scrollFileHandlebars = require('../templates/scrollfile.handlebars')
+  // const scrollFileHTML = scrollFileHandlebars()
 
-  $('body').append(createFileUploadHTML)
-  $('body').append(updateFileUploadHTML)
-  $('body').append(viewFileUploadHTML)
-  $('body').append(deleteFileUploadHTML)
+  const containerHandlebars = require('../templates/container.handlebars')
+  const containerHTML = containerHandlebars()
+
+  $('body').append(containerHTML)
+  $('.add-files-box').append(createFileUploadHTML)
+  // $('body').append(updateFileUploadHTML)
+  // $('body').append(viewFileUploadHTML)
+  // $('body').append(deleteFileUploadHTML)
   $('body').prepend(navHTML)
-  $('body').append(scrollFileHTML)
+  // $('.container').append(scrollFileHTML)
 
   $('body').on('click', '.file-tabs a', function (e) {
     e.preventDefault()
@@ -115,6 +119,7 @@ const signOutSuccess = function () {
   $('.change-password').remove()
   $('.navbar').remove()
   $('.scrollable').remove()
+  $('.container').remove()
 
   const homePageHandlebars = require('../templates/homepage.handlebars')
   const homePageHTML = homePageHandlebars()

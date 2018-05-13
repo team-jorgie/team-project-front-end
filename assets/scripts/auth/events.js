@@ -2,7 +2,7 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const ui = require('./ui')
 const api = require('./api')
-const fileEvents = require('../fileupload/fileUploadEvents')
+const fileEvents = require('../fileupload/fileuploadevents')
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -10,6 +10,7 @@ const onSignUp = function (event) {
   console.log(data)
   api.signUp(data)
     .then(ui.signUpSuccess)
+    .then(() => { signInNoEvent(data) })
     .catch(ui.signUpFailure)
 }
 
@@ -35,6 +36,13 @@ const onSignOut = function (event) {
   api.signOut()
     .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)
+}
+
+const signInNoEvent = function (data) {
+  api.signIn(data)
+    .then(ui.signInSuccess)
+    .then(() => { fileEvents.onGetFileUploadNoEvent() })
+    .catch(ui.signInFailure)
 }
 
 const addHandlers = () => {

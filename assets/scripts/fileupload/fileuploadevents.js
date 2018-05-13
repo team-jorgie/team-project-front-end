@@ -9,7 +9,7 @@ const onCreateFileUpload = function (event) {
   console.log('form data in submit is: ', formData)
   api.createFileUpload(formData)
     .then(ui.createFileUploadSuccess)
-    // .catch(ui.)
+    .catch(ui.createFileUploadFailure)
 }
 
 const onUpdateFileUpload = function (event) {
@@ -20,7 +20,7 @@ const onUpdateFileUpload = function (event) {
   api.updateFileUpload(data)
     .then((data) => { console.log(data) })
     .then(onGetFileUploadNoEvent)
-    // .catch(ui.)
+    .catch(ui.getFileUploadFailure)
 }
 
 const onDeleteFileUpload = (event) => {
@@ -44,16 +44,36 @@ const onGetFileUpload = (event) => {
 const deleter = (e) => {
   e.preventDefault()
   console.log('delete ')
+  const id = $(e.target).children().attr('data-id')
   const data = {fileupload: { id: $(e.target).children().attr('data-id') }}
   console.log('item to delete has id of', data)
   api.deleteFileUpload(data)
+    .then(ui.deleteFileUploadSuccess)
+    .then(() => {
+      $('#' + id).fadeOut()
+      $('#' + id + '-all').fadeOut()
+    })
+    .then(() => {
+      $('#' + id).remove()
+      $('#' + id + '-all').remove()
+    })
 }
 
 const onGetFileUploadNoEvent = () => {
   // const data = getFormFields(event.target)
   api.getFileUpload()
     .then(ui.getFileUploadSuccess)
+
     // .catch(ui.)
+}
+
+const onShowUpdate = (e) => {
+  console.log($(e.target).attr('data-id'))
+
+  const updateFileUploadHandlebars = require('../templates/file-upload/update-file.handlebars')
+  const updateFileUploadHTML = updateFileUploadHandlebars({fileId: $(e.target).attr('data-id')})
+  $(e.target).parents('.display-file').append(updateFileUploadHTML)
+  $(e.target).attr('disabled', 'disabled')
 }
 
 const addHandlers = () => {
@@ -61,7 +81,8 @@ const addHandlers = () => {
   $('body').on('submit', '.view-file', onGetFileUpload)
   $('body').on('submit', '.update-file', onUpdateFileUpload)
   $('body').on('submit', '.delete-file', onDeleteFileUpload)
-  $('body').on('submit', '.form-results .delete-single-file', deleter)
+  $('body').on('submit', '.tab-content .delete-single-file', deleter)
+  $('body').on('click', '.tab-content .show-update', onShowUpdate)
 }
 
 module.exports = {

@@ -1,14 +1,19 @@
 'use strict'
 const store = require('../store')
-const moment = require('moment')
+// const moment = require('moment')
+const viewMyFileUploadHandlebars = require('../templates/file-upload/view-my-file.handlebars')
+const viewAllFileUploadHandlebars = require('../templates/file-upload/view-all-file.handlebars')
 
 const createFileUploadSuccess = function (data) {
   console.log(data)
-  $('#message').html(`<div class="alert alert-success" role="alert"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p><form><input data-id="${data.fileupload._id}" type="submit" value="Delete"></form></div>`)
-  $('.all-files').append(`<p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p>`)
-  $('.my-files').append(`<div id="${data.fileupload._id}"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p><p>Tags: ${data.fileupload.tag}</p><form class="delete-single-file"><input  data-id="${data.fileupload._id}" type="submit" value="Delete"></form></div>`)
+  $('#message').html(`<div class="alert alert-success" role="alert"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p></div>`)
+  $('.all-files').prepend(viewAllFileUploadHandlebars({result: data.fileupload}))
+  $('.my-files').prepend(viewMyFileUploadHandlebars({result: data.fileupload}))
+  // $('.all-files').append(`<p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p>`)
+  // $('.my-files').append(`<div class="display-file" id="${data.fileupload._id}"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p><p>Tags: ${data.fileupload.tag}</p><form class="delete-single-file"><input  data-id="${data.fileupload._id}" type="submit" value="Delete"></form></div>`)
   $('#message').css('text-align', 'center')
   $('form').trigger('reset')
+  $('.no-files').remove()
   setTimeout(() => {
     $('#message').html(``)
   }, 3000
@@ -16,6 +21,9 @@ const createFileUploadSuccess = function (data) {
 }
 
 const createFileUploadFailure = function () {
+  $('#message').html(`<div class="alert alert-warning" role="alert">
+  <p>Couldn't retrieve files, please try again!</p>
+  </div>`)
   setTimeout(() => {
     $('#message').html('')
   }, 3000
@@ -23,6 +31,9 @@ const createFileUploadFailure = function () {
 }
 
 const updateFileUploadSuccess = function (data) {
+  $('#message').html(`<div class="alert alert-success" role="alert">
+  <p>File successfully updated</p>
+  </div>`)
   setTimeout(() => {
     $('#message').html('')
   }, 3000
@@ -30,6 +41,7 @@ const updateFileUploadSuccess = function (data) {
 }
 
 const updateFileUploadFailure = function () {
+  $('#message').html('<div class="alert alert-warning" role="alert"><p>Your file upload failed! Please try again.</p></div>')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
@@ -38,7 +50,11 @@ const updateFileUploadFailure = function () {
 
 const deleteFileUploadSuccess = function (data) {
   console.log(data)
-  $('#message').html('You successfully deleted your file!')
+  console.log($('.my-files div').length)
+  if ($('.my-files div').length < 2) {
+    $('.my-files').append('<h2 class="no-files">Looks like you don\'t have any files yet. Add a file to get started!')
+  }
+  $('#message').html('<div class="alert alert-success" role="alert"><p>You successfully deleted your file!</p></div>')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
@@ -46,6 +62,7 @@ const deleteFileUploadSuccess = function (data) {
 }
 
 const deleteFileUploadFailure = function () {
+  $('#message').html('<div class="alert alert-warning" role="alert"><p>Your file deletion attempt failed! Please try again.</p></div>')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
@@ -54,8 +71,12 @@ const deleteFileUploadFailure = function () {
 
 const getFileUploadSuccess = function (data) {
   console.log(data)
+  $('.tab-title').remove()
   $('.my-files').remove()
   $('.all-files').remove()
+  console.log(data.uploads.sort(function (a, b) {
+    return new Date(b.createdAt) - new Date(a.createdAt)
+  }))
   const myFiles = []
   data.uploads.forEach((file) => {
     if (file.owner === store.user._id) {
@@ -63,23 +84,32 @@ const getFileUploadSuccess = function (data) {
     }
   })
   console.log(myFiles)
-  let myResultsHtml = '<div class="my-files col-md-6"><h3>My Files</h3>'
+  let myResultsHtml = '<h3 class="tab-title">My Files</h3><div class="my-files">'
   myFiles.forEach((result) => {
-    myResultsHtml = myResultsHtml + `<div id="${result._id}"><p><a href="${result.url}" download="${result.title}">Name: ${result.title}</a></p><p>Owner: ${result.owner}</p><p>Created: ${result.createdAt}</p><p>Updated: ${result.updatedAt}</p><p>Tags: ${result.tag}</p><form class="delete-single-file"><input  data-id="${result._id}" type="submit" value="Delete"></form></div>`
+    const myFileUploadHTML = viewMyFileUploadHandlebars({result: result})
+    myResultsHtml = myResultsHtml + myFileUploadHTML
   })
-  let resultsHtml = '<div class="all-files col-md-6"><h3>All Files</h3>'
+  let resultsHtml = '<h3 class="tab-title">All Files</h3><div class="all-files">'
   data.uploads.forEach((result) => {
-    resultsHtml = resultsHtml + `<p><a href="${result.url}" download="${result.title}">Name: ${result.title}</a></p><p>Owner: ${result.owner}</p><p>Created: ${result.createdAt}</p><p>Updated: ${result.updatedAt}</p><p>Tags: ${result.tag}</p>`
+    const allFileUploadHTML = viewAllFileUploadHandlebars({result: result})
+    resultsHtml = resultsHtml + allFileUploadHTML
+    // resultsHtml = resultsHtml + `<p><a href="${result.url}" download="${result.title}">Name: ${result.title}</a></p><p>Owner: ${result.owner}</p><p>Size: ${result.size/1000000} MB</p><p>Created: ${result.createdAt.substring(0, result.createdAt.length - 14)}</p><p>Updated: ${result.updatedAt.substring(0, result.createdAt.length - 14)}</p><p>Tags: ${result.tag}</p>`
   })
   resultsHtml = resultsHtml + '</div>'
-  $('.form-results').append(myResultsHtml)
-  $('.form-results').append(resultsHtml)
+  if (myFiles.length < 1) {
+    $('.myfiles-content').append('<div class="my-files"><h3>My Files</h3><h2 class="no-files">Looks like you don\'t have any files yet. Add a file to get started!</h2></div>')
+  } else {
+    $('.myfiles-content').append(myResultsHtml)
+  }
+  $('.all-files-content').append(resultsHtml)
+  $('#message').html('<div class="alert alert-success" role="alert"><p>Files successfully retreived</p></div>')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
   )
 }
 const getFileUploadFailure = function () {
+  $('#message').html('<div class="alert alert-warning" role="alert"><p>Getting files failed, please check your internet connection.</p></div>')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
