@@ -1,10 +1,30 @@
+<h1 data-id="{{result._id}}" class="view-file">My Files</h1>
 
-  <h1 data-id="" class="view-file">View Files</h1>
+<p>Results here</p>
 
+<div class="form-results">
+<h3>My Files</h3>'
+<div id="{{result._id}}">
+ <p><a href="{{result.url}}" download="{{result.title}}">Name: {{result.title}}</a></p>
+ <p>Owner: {{result.owner}}</p>
+ <p>Created: {{result.createdAt}}</p>
+ <p>Updated: {{result.updatedAt}}</p>
+ <p>Tags: {{result.tag}}</p>
+</div>
 
-  <form class="view-file">
+<div>
+<form class="delete-single-file"><input  data-id="{{result._id}}" type="submit" value="Delete"></form>
+</div>
+
+<div>
+  <form class="update-file">
     <fieldset>
-      <input class="button" type="submit" value="View File">
+      <input type="text" name="fileupload[id]" autocomplete="id" placeholder="file ID" required>
+
+      <input type="text" name="fileupload[title]" autocomplete="title" placeholder="New file name" required>
+
+      <input type="text" name="fileupload[tag]" autocomplete="tags" placeholder="Tags (ex. cat, dog)">
+
+      <input class="button" type="submit" value="Update File">
     </fieldset>
   </form>
-  <div class="form-results"></div>
