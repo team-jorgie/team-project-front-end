@@ -1,12 +1,16 @@
 'use strict'
 const store = require('../store')
 // const moment = require('moment')
+const viewMyFileUploadHandlebars = require('../templates/file-upload/view-my-file.handlebars')
+const viewAllFileUploadHandlebars = require('../templates/file-upload/view-all-file.handlebars')
 
 const createFileUploadSuccess = function (data) {
   console.log(data)
   $('#message').html(`<div class="alert alert-success" role="alert"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p></div>`)
-  $('.all-files').append(`<p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p>`)
-  $('.my-files').append(`<div class="display-file" id="${data.fileupload._id}"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p><p>Tags: ${data.fileupload.tag}</p><form class="delete-single-file"><input  data-id="${data.fileupload._id}" type="submit" value="Delete"></form></div>`)
+  $('.all-files').prepend(viewAllFileUploadHandlebars({result: data.fileupload}))
+  $('.my-files').prepend(viewMyFileUploadHandlebars({result: data.fileupload}))
+  // $('.all-files').append(`<p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p>`)
+  // $('.my-files').append(`<div class="display-file" id="${data.fileupload._id}"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p><p>Tags: ${data.fileupload.tag}</p><form class="delete-single-file"><input  data-id="${data.fileupload._id}" type="submit" value="Delete"></form></div>`)
   $('#message').css('text-align', 'center')
   $('form').trigger('reset')
   $('.no-files').remove()
@@ -77,13 +81,16 @@ const getFileUploadSuccess = function (data) {
     }
   })
   console.log(myFiles)
-  let myResultsHtml = '<div class="my-files"><h3>My Files</h3>'
+  let myResultsHtml = '<h3>My Files</h3><div class="my-files">'
   myFiles.forEach((result) => {
-    myResultsHtml = myResultsHtml + `<div class="display-file" id="${result._id}"><p><a href="${result.url}" download="${result.title}">Name: ${result.title}</a></p><p>Size: ${result.size/1000000} MB</p><p>Created: ${result.createdAt.substring(0, result.createdAt.length - 14)}</p><p>Updated: ${result.updatedAt.substring(0, result.updatedAt.length - 14)}</p><p>Tags: ${result.tag}</p><form class="delete-single-file"><input  data-id="${result._id}" type="submit" value="Delete"></form><button class="show-update" data-id="${result._id}">update</button></div>`
+    const myFileUploadHTML = viewMyFileUploadHandlebars({result: result})
+    myResultsHtml = myResultsHtml + myFileUploadHTML
   })
-  let resultsHtml = '<div class="all-files"><h3>All Files</h3>'
+  let resultsHtml = '<h3>All Files</h3><div class="all-files">'
   data.uploads.forEach((result) => {
-    resultsHtml = resultsHtml + `<p><a href="${result.url}" download="${result.title}">Name: ${result.title}</a></p><p>Owner: ${result.owner}</p><p>Size: ${result.size/1000000} MB</p><p>Created: ${result.createdAt.substring(0, result.createdAt.length - 14)}</p><p>Updated: ${result.updatedAt.substring(0, result.createdAt.length - 14)}</p><p>Tags: ${result.tag}</p>`
+    const allFileUploadHTML = viewAllFileUploadHandlebars({result: result})
+    resultsHtml = resultsHtml + allFileUploadHTML
+    // resultsHtml = resultsHtml + `<p><a href="${result.url}" download="${result.title}">Name: ${result.title}</a></p><p>Owner: ${result.owner}</p><p>Size: ${result.size/1000000} MB</p><p>Created: ${result.createdAt.substring(0, result.createdAt.length - 14)}</p><p>Updated: ${result.updatedAt.substring(0, result.createdAt.length - 14)}</p><p>Tags: ${result.tag}</p>`
   })
   resultsHtml = resultsHtml + '</div>'
   if (myFiles.length < 1) {
