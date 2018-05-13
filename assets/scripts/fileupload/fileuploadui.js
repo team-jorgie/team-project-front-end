@@ -21,7 +21,7 @@ const createFileUploadSuccess = function (data) {
 }
 
 const createFileUploadFailure = function () {
-  $('#message').html(`<div class="alert alert-failure" role="alert">
+  $('#message').html(`<div class="alert alert-warning" role="alert">
   <p>Couldn't retrieve files, please try again!</p>
   </div>`)
   setTimeout(() => {
@@ -41,6 +41,7 @@ const updateFileUploadSuccess = function (data) {
 }
 
 const updateFileUploadFailure = function () {
+  $('#message').html('<div class="alert alert-warning" role="alert"><p>Your file upload failed! Please try again.</p></div>')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
@@ -61,6 +62,7 @@ const deleteFileUploadSuccess = function (data) {
 }
 
 const deleteFileUploadFailure = function () {
+  $('#message').html('<div class="alert alert-warning" role="alert"><p>Your file deletion attempt failed! Please try again.</p></div>')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
@@ -100,12 +102,14 @@ const getFileUploadSuccess = function (data) {
     $('.myfiles-content').append(myResultsHtml)
   }
   $('.all-files-content').append(resultsHtml)
+  $('#message').html('<div class="alert alert-success" role="alert"><p>Files successfully retreived</p></div>')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
   )
 }
 const getFileUploadFailure = function () {
+  $('#message').html('<div class="alert alert-warning" role="alert"><p>Getting files failed, please check your internet connection.</p></div>')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
