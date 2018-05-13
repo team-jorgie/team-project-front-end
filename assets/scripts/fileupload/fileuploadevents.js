@@ -9,7 +9,7 @@ const onCreateFileUpload = function (event) {
   console.log('form data in submit is: ', formData)
   api.createFileUpload(formData)
     .then(ui.createFileUploadSuccess)
-    // .catch(ui.)
+    .catch(ui.createFileUploadFailure)
 }
 
 const onUpdateFileUpload = function (event) {
@@ -20,7 +20,7 @@ const onUpdateFileUpload = function (event) {
   api.updateFileUpload(data)
     .then((data) => { console.log(data) })
     .then(onGetFileUploadNoEvent)
-    // .catch(ui.)
+    .catch(ui.getFileUploadFailure)
 }
 
 const onDeleteFileUpload = (event) => {
@@ -66,12 +66,22 @@ const onGetFileUploadNoEvent = () => {
     // .catch(ui.)
 }
 
+const onShowUpdate = (e) => {
+  console.log($(e.target).attr('data-id'))
+
+  const updateFileUploadHandlebars = require('../templates/file-upload/update-file.handlebars')
+  const updateFileUploadHTML = updateFileUploadHandlebars({fileId: $(e.target).attr('data-id')})
+  $(e.target).parents('.display-file').append(updateFileUploadHTML)
+  $(e.target).attr('disabled', 'disabled')
+}
+
 const addHandlers = () => {
   $('body').on('submit', '.create-file', onCreateFileUpload)
   $('body').on('submit', '.view-file', onGetFileUpload)
   $('body').on('submit', '.update-file', onUpdateFileUpload)
   $('body').on('submit', '.delete-file', onDeleteFileUpload)
   $('body').on('submit', '.tab-content .delete-single-file', deleter)
+  $('body').on('click', '.tab-content .show-update', onShowUpdate)
 }
 
 module.exports = {
