@@ -18,6 +18,24 @@ body {
 
 .display-file {
   border-bottom: 1px solid #ddd;
+  padding: 10px 0 15px;
+
+  a {
+    font-size: 18px;
+  }
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.account-info {
+  float: left;
+  padding-top: 15px;
+
+  p {
+    display: inline;
+  }
 }
 
 h1 {
@@ -25,7 +43,7 @@ h1 {
 }
 
 #message {
-  z-index: 9999
+  z-index: 9999;
 }
 
 .delete-single-file {

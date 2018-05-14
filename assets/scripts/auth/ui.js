@@ -45,7 +45,7 @@ const signInSuccess = function (data) {
   // const deleteFileUploadHTML = deleteFileUploadHandlebars()
 
   const navHandlebars = require('../templates/nav.handlebars')
-  const navHTML = navHandlebars()
+  const navHTML = navHandlebars({username: store.user.username})
 
   // const scrollFileHandlebars = require('../templates/scrollfile.handlebars')
   // const scrollFileHTML = scrollFileHandlebars()

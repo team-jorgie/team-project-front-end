@@ -1,7 +1,9 @@
 <div id="{{result._id}}-all" class="display-file">
- <p><a href="{{result.url}}" download="{{result.title}}">Name: {{result.title}}</a></p>
+ <p><a href="{{result.url}}" download="{{result.title}}" target="_blank">{{result.title}}</a></p>
  <p>Owner: {{result.owner}}</p>
  <p>Created: {{result.createdAt}}</p>
  <p>Updated: {{result.updatedAt}}</p>
- <p>Tags: {{result.tag}}</p>
+ {{#if result.tag}}
+  <p>Tags: {{result.tag}}</p>
+ {{/if}}
 </div>
