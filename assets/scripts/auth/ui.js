@@ -71,7 +71,7 @@ const signInSuccess = function (data) {
 
   $('body').append(signOutUserHTML)
   $('.jumbotron').remove()
-  console.log(store.user)
+  // console.log(store.user)
 }
 
 const signInFailure = function () {
@@ -125,7 +125,7 @@ const signOutSuccess = function () {
   const homePageHTML = homePageHandlebars()
 
   $('body').append(homePageHTML)
-  console.log('u signed out')
+  // console.log('u signed out')
 }
 const signOutFailure = function () {
   $('#message').html(`<div class="alert alert-danger" role="alert">Failed to sign out!</div>`)
