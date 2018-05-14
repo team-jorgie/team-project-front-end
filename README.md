@@ -29,7 +29,22 @@ Our development process focused on people working either on their own or paired 
 We used pair programming fairly extensively when possible to ensure that developers would frequently have a second set of eyes. If the odd person out was needed, we worked close by or when remotely, with slack constantly open to ensure that people could always get the necessary assistance on particularly tricky coding challenges. Additionally at the end of development, Aubree stepped up to bug test the site to ensure all errors were well documented so they could be taken care of in a timely, orderly fashion.
 
 Link to Wireframes
-[Homescreen](https://docs.google.com/drawings/d/1pw8pJ3O16qBPKFIDL2K8rrRc7pU_AO4ku68U0vQbRRs/edit?usp=sharing)
-[File List](https://docs.google.com/drawings/d/1MD3ItmYG7E2JdPRRsPbS0VVVcLuUtNav9jsR-qYKhek/edit?usp=sharing)
-[Single File View "My files"](https://docs.google.com/drawings/d/1ERzipcgSE8rG7Kp4G0ZLYj1-d6Lxn82VoBn8-qPqoXM/edit?usp=sharing)
-[Single File View “All files”](https://docs.google.com/drawings/d/13mtWhu2QeejQ1Yxc8s50007WKkIki2FbKhTAC__8NbA/edit?usp=sharing)
+- [Homescreen](https://docs.google.com/drawings/d/1pw8pJ3O16qBPKFIDL2K8rrRc7pU_AO4ku68U0vQbRRs/edit?usp=sharing)
+- [File List](https://docs.google.com/drawings/d/1MD3ItmYG7E2JdPRRsPbS0VVVcLuUtNav9jsR-qYKhek/edit?usp=sharing)
+- [Single File View "My files"](https://docs.google.com/drawings/d/1ERzipcgSE8rG7Kp4G0ZLYj1-d6Lxn82VoBn8-qPqoXM/edit?usp=sharing)
+- [Single File View “All files”](https://docs.google.com/drawings/d/13mtWhu2QeejQ1Yxc8s50007WKkIki2FbKhTAC__8NbA/edit?usp=sharing)
+
+User Stories
+- I want to be able to upload files from my computer.
+- I want to be able to give my files a title
+- I want to be able to add a description to files
+- I want to be able to modify title and description
+- I want to be able to add tags to my files
+- I want to be able to delete files
+- I want to be able to see a preview of my file with file type, title, description, dates, and tags
+- I want to know the date/time the files were created or modified
+- I want to be able to download my files for offline access.
+- I want to be able to modify my file’s: title, description, and tags
+- I want to be able to know the date/time the files were modified
+- I want to be able to apply tags to my document
+
