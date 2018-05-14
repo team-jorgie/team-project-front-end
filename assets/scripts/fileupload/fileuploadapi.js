@@ -3,7 +3,7 @@ const config = require('../config')
 const store = require('../store')
 
 const createFileUpload = function (formData) {
-  console.log(formData)
+  // console.log(formData)
   return $.ajax({
     method: 'POST',
     url: config.apiUrl + `/fileuploads`,

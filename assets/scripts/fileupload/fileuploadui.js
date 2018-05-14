@@ -5,7 +5,7 @@ const viewMyFileUploadHandlebars = require('../templates/file-upload/view-my-fil
 const viewAllFileUploadHandlebars = require('../templates/file-upload/view-all-file.handlebars')
 
 const createFileUploadSuccess = function (data) {
-  console.log(data)
+  // console.log(data)
   $('#message').html(`<div class="alert alert-success" role="alert"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p></div>`)
   $('.all-files').prepend(viewAllFileUploadHandlebars({result: data.fileupload}))
   $('.my-files').prepend(viewMyFileUploadHandlebars({result: data.fileupload}))
@@ -49,8 +49,8 @@ const updateFileUploadFailure = function () {
 }
 
 const deleteFileUploadSuccess = function (data) {
-  console.log(data)
-  console.log($('.my-files div').length)
+  // console.log(data)
+  // console.log($('.my-files div').length)
   if ($('.my-files div').length < 2) {
     $('.my-files').append('<h2 class="no-files">Looks like you don\'t have any files yet. Add a file to get started!')
   }
@@ -70,20 +70,20 @@ const deleteFileUploadFailure = function () {
 }
 
 const getFileUploadSuccess = function (data) {
-  console.log(data)
+  // console.log(data)
   $('.tab-title').remove()
   $('.my-files').remove()
   $('.all-files').remove()
-  console.log(data.uploads.sort(function (a, b) {
+  data.uploads.sort(function (a, b) {
     return new Date(b.createdAt) - new Date(a.createdAt)
-  }))
+  })
   const myFiles = []
   data.uploads.forEach((file) => {
     if (file.owner === store.user._id) {
       myFiles.push(file)
     }
   })
-  console.log(myFiles)
+  // console.log(myFiles)
   let myResultsHtml = '<h3 class="tab-title">My Files</h3><div class="my-files">'
   myFiles.forEach((result) => {
     const myFileUploadHTML = viewMyFileUploadHandlebars({result: result})

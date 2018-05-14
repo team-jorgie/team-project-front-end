@@ -45,7 +45,7 @@ const signInSuccess = function (data) {
   // const deleteFileUploadHTML = deleteFileUploadHandlebars()
 
   const navHandlebars = require('../templates/nav.handlebars')
-  const navHTML = navHandlebars()
+  const navHTML = navHandlebars({username: store.user.username})
 
   // const scrollFileHandlebars = require('../templates/scrollfile.handlebars')
   // const scrollFileHTML = scrollFileHandlebars()
@@ -71,7 +71,7 @@ const signInSuccess = function (data) {
 
   $('body').append(signOutUserHTML)
   $('.jumbotron').remove()
-  console.log(store.user)
+  // console.log(store.user)
 }
 
 const signInFailure = function () {
@@ -125,7 +125,7 @@ const signOutSuccess = function () {
   const homePageHTML = homePageHandlebars()
 
   $('body').append(homePageHTML)
-  console.log('u signed out')
+  // console.log('u signed out')
 }
 const signOutFailure = function () {
   $('#message').html(`<div class="alert alert-danger" role="alert">Failed to sign out!</div>`)

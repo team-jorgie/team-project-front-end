@@ -6,7 +6,7 @@ const api = require('./fileuploadapi')
 const onCreateFileUpload = function (event) {
   event.preventDefault()
   const formData = new FormData(event.target)
-  console.log('form data in submit is: ', formData)
+  // console.log('form data in submit is: ', formData)
   api.createFileUpload(formData)
     .then(ui.createFileUploadSuccess)
     .catch(ui.createFileUploadFailure)
@@ -16,9 +16,9 @@ const onUpdateFileUpload = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
   data.fileupload.tag = data.fileupload.tag.split(', ')
-  console.log(data)
+  // console.log(data)
   api.updateFileUpload(data)
-    .then((data) => { console.log(data) })
+    // .then((data) => { console.log(data) })
     .then(onGetFileUploadNoEvent)
     .catch(ui.getFileUploadFailure)
 }
@@ -26,7 +26,7 @@ const onUpdateFileUpload = function (event) {
 const onDeleteFileUpload = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
-  console.log(data)
+  // console.log(data)
   api.deleteFileUpload(data)
     // .then(ui.)
     // .then(api.)
@@ -43,10 +43,10 @@ const onGetFileUpload = (event) => {
 
 const deleter = (e) => {
   e.preventDefault()
-  console.log('delete ')
+  // console.log('delete ')
   const id = $(e.target).children().attr('data-id')
   const data = {fileupload: { id: $(e.target).children().attr('data-id') }}
-  console.log('item to delete has id of', data)
+  // console.log('item to delete has id of', data)
   api.deleteFileUpload(data)
     .then(ui.deleteFileUploadSuccess)
     .then(() => {
@@ -68,7 +68,7 @@ const onGetFileUploadNoEvent = () => {
 }
 
 const onShowUpdate = (e) => {
-  console.log($(e.target).attr('data-id'))
+  // console.log($(e.target).attr('data-id'))
 
   const updateFileUploadHandlebars = require('../templates/file-upload/update-file.handlebars')
   const updateFileUploadHTML = updateFileUploadHandlebars({fileId: $(e.target).attr('data-id')})
