@@ -97,7 +97,7 @@ const getFileUploadSuccess = function (data) {
   })
   resultsHtml = resultsHtml + '</div>'
   if (myFiles.length < 1) {
-    $('.myfiles-content').append('<div class="my-files"><h3>My Files</h3><h2 class="no-files">Looks like you don\'t have any files yet. Add a file to get started!</h2></div>')
+    $('.myfiles-content').append('<h3>My Files</h3><div class="my-files"><h2 class="no-files">Looks like you don\'t have any files yet. Add a file to get started!</h2></div>')
   } else {
     $('.myfiles-content').append(myResultsHtml)
   }
