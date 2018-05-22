@@ -27,6 +27,7 @@ const createFileUploadFailure = function () {
   $('#message').html(`<div class="alert alert-warning" role="alert">
   <p>Couldn't retrieve files, please try again!</p>
   </div>`)
+  $('.create-file input[type="submit"]').removeAttr('disabled')
   setTimeout(() => {
     $('#message').html('')
   }, 3000

@@ -78,6 +78,7 @@ const signInSuccess = function (data) {
 const signInFailure = function () {
   $('#message').html(`<div class="alert alert-danger" role="alert">You have failed sign in!</div>`)
   $('#message').css('text-align', 'center')
+  $('.sign-in input[type="submit"]').removeAttr('disabled')
   $('form').trigger('reset')
   setTimeout(() => {
     $('#message').html('')
