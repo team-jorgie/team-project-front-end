@@ -5,6 +5,11 @@
       <input type="file" name="fileupload[file]">
       <input type="text" name="fileupload[title]" autocomplete="title" placeholder="File name" required>
       <input type="text" name="fileupload[tags]" autocomplete="tags" placeholder="Tags (ex. cat, dog)">
+
+      <input type="radio" name="fileupload[publicFile]" value="true" checked="checked"><label >Public</label>
+
+      <input type="radio" name="fileupload[publicFile]" value="false"><label>Private</label>
+
       <input class="button" type="submit" value="Upload File">
     </fieldset>
   </form>

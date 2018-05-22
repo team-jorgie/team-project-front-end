@@ -5,9 +5,12 @@ const viewMyFileUploadHandlebars = require('../templates/file-upload/view-my-fil
 const viewAllFileUploadHandlebars = require('../templates/file-upload/view-all-file.handlebars')
 
 const createFileUploadSuccess = function (data) {
-  // console.log(data)
-  $('#message').html(`<div class="alert alert-success" role="alert"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p></div>`)
-  $('.all-files').prepend(viewAllFileUploadHandlebars({result: data.fileupload}))
+  // console.log(data)``
+  $('#message').html(`<div class="alert alert-success" role="alert"><p>File Successfully Uploaded</p></div>`)
+  $('.create-file input[type="submit"]').removeAttr('disabled')
+  if (data.fileupload.publicFile) {
+    $('.all-files').prepend(viewAllFileUploadHandlebars({result: data.fileupload}))
+  }
   $('.my-files').prepend(viewMyFileUploadHandlebars({result: data.fileupload}))
   // $('.all-files').append(`<p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p>`)
   // $('.my-files').append(`<div class="display-file" id="${data.fileupload._id}"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p><p>Updated: ${data.fileupload.updatedAt}</p><p>Tags: ${data.fileupload.tag}</p><form class="delete-single-file"><input  data-id="${data.fileupload._id}" type="submit" value="Delete"></form></div>`)
@@ -83,6 +86,15 @@ const getFileUploadSuccess = function (data) {
       myFiles.push(file)
     }
   })
+
+  // makes a file appear in all files when public is set to true.
+  const publicFiles = []
+  data.uploads.forEach((file) => {
+    if (file.publicFile) {
+      publicFiles.push(file)
+    }
+  })
+
   // console.log(myFiles)
   let myResultsHtml = '<h3 class="tab-title">My Files</h3><div class="my-files">'
   myFiles.forEach((result) => {
@@ -90,7 +102,7 @@ const getFileUploadSuccess = function (data) {
     myResultsHtml = myResultsHtml + myFileUploadHTML
   })
   let resultsHtml = '<h3 class="tab-title">All Files</h3><div class="all-files">'
-  data.uploads.forEach((result) => {
+  publicFiles.forEach((result) => {
     const allFileUploadHTML = viewAllFileUploadHandlebars({result: result})
     resultsHtml = resultsHtml + allFileUploadHTML
     // resultsHtml = resultsHtml + `<p><a href="${result.url}" download="${result.title}">Name: ${result.title}</a></p><p>Owner: ${result.owner}</p><p>Size: ${result.size/1000000} MB</p><p>Created: ${result.createdAt.substring(0, result.createdAt.length - 14)}</p><p>Updated: ${result.updatedAt.substring(0, result.createdAt.length - 14)}</p><p>Tags: ${result.tag}</p>`

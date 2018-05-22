@@ -26,6 +26,7 @@ const signInSuccess = function (data) {
   $('#message').css('text-align', 'center')
   $('form').trigger('reset')
   $('.modal').modal('hide')
+  $('.sign-in input[type="submit"]').removeAttr('disabled')
   setTimeout(() => {
     $('#message').html('')
   }, 3000
