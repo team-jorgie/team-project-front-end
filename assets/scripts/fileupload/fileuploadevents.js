@@ -6,6 +6,7 @@ const api = require('./fileuploadapi')
 const onCreateFileUpload = function (event) {
   event.preventDefault()
   const formData = new FormData(event.target)
+  $('.create-file input[type="submit"]').attr('disabled', 'true')
   console.log('form data in submit is: ', formData)
   for (const key of formData.keys()) {
     console.log(key)

@@ -6,7 +6,8 @@ const viewAllFileUploadHandlebars = require('../templates/file-upload/view-all-f
 
 const createFileUploadSuccess = function (data) {
   // console.log(data)``
-  $('#message').html(`<div class="alert alert-success" role="alert"><p><a href="${data.fileupload.url}" download="${data.fileupload.title}">Name: ${data.fileupload.title}</a></p><p>Owner: ${data.fileupload.owner}</p><p>Size: ${data.fileupload.size / 1000000} MB</p><p>Created: ${data.fileupload.createdAt}</p></div>`)
+  $('#message').html(`<div class="alert alert-success" role="alert"><p>File Successfully Uploaded</p></div>`)
+  $('.create-file input[type="submit"]').removeAttr('disabled')
   if (data.fileupload.publicFile) {
     $('.all-files').prepend(viewAllFileUploadHandlebars({result: data.fileupload}))
   }
