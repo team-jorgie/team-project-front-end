@@ -6,7 +6,10 @@ const api = require('./fileuploadapi')
 const onCreateFileUpload = function (event) {
   event.preventDefault()
   const formData = new FormData(event.target)
-  // console.log('form data in submit is: ', formData)
+  console.log('form data in submit is: ', formData)
+  for (const key of formData.keys()) {
+    console.log(key)
+  }
   api.createFileUpload(formData)
     .then(ui.createFileUploadSuccess)
     .catch(ui.createFileUploadFailure)
@@ -28,9 +31,9 @@ const onDeleteFileUpload = (event) => {
   const data = getFormFields(event.target)
   // console.log(data)
   api.deleteFileUpload(data)
-    // .then(ui.)
-    // .then(api.)
-    // .catch(ui.)
+  // .then(ui.)
+  // .then(api.)
+  // .catch(ui.)
 }
 
 const onGetFileUpload = (event) => {

@@ -7,6 +7,12 @@
     <p>Tags: {{result.tag}}</p>
    {{/if}}
 
+   {{#if result.publicFile}}
+   <p>This file is public and can be seen by all Foxy File users.</p>
+   {{else}}
+   <p>This file is private, for your eyes only!</p>
+   {{/if}}
+
   <form class="delete-single-file"><input  data-id="{{result._id}}" type="submit" value="Delete"></form>
   <button class="show-update" data-id="{{result._id}}">Update</button>
 </div>
