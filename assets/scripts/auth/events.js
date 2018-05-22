@@ -16,6 +16,7 @@ const onSignUp = function (event) {
 
 const onSignIn = function (event) {
   event.preventDefault()
+  $('.sign-in input[type="submit"]').attr('disabled', 'true')
   const data = getFormFields(event.target)
   api.signIn(data)
     .then(ui.signInSuccess)
